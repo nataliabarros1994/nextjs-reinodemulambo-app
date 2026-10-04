@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <radialGradient id="g" cx="32%" cy="22%" r="78%">
+      <stop offset="0%" stop-color="#6B21A8"/>
+      <stop offset="48%" stop-color="#2E0A3F"/>
+      <stop offset="100%" stop-color="#0A0A0A"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#g)"/>
+  <circle cx="1020" cy="90" r="200" fill="none" stroke="#C9A227" stroke-opacity="0.3"/>
+  <circle cx="1020" cy="90" r="130" fill="none" stroke="#C9A227" stroke-opacity="0.16" stroke-dasharray="6 10"/>
+  <circle cx="140" cy="540" r="160" fill="#C1121F" fill-opacity="0.18"/>
+  <g transform="translate(600 300)">
+    <path d="M0 -90c48 28 74 86 74 154 0 58-32 112-74 132-42 -20-74 -74-74 -132 0-68 26-126 74-154Z" fill="#F5F1E8" fill-opacity="0.1" stroke="#C9A227" stroke-width="3"/>
+    <path d="M0 -74v264M-38 -40c22 38 28 86 22 140M38 -40c-22 38-28 86-22 140M-54 24c22 22 38 32 54 38M54 24c-22 22-38 32-54 38" fill="none" stroke="#C9A227" stroke-width="2.4"/>
+  </g>
+  <text x="80" y="560" fill="#C9A227" font-family="Georgia, serif" font-size="28" letter-spacing="6">BÚZIOS</text>
+</svg>

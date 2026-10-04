@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <radialGradient id="g" cx="28%" cy="18%" r="80%">
+      <stop offset="0%" stop-color="#6B21A8"/>
+      <stop offset="50%" stop-color="#2E0A3F"/>
+      <stop offset="100%" stop-color="#0A0A0A"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#g)"/>
+  <circle cx="1040" cy="80" r="200" fill="none" stroke="#C9A227" stroke-opacity="0.26"/>
+  <circle cx="120" cy="540" r="150" fill="#C1121F" fill-opacity="0.18"/>
+  <g transform="translate(600 300)">
+    <path d="M0 -130c28 34 34 62 0 96-34-34-28-62 0-96Z" fill="#C1121F" fill-opacity="0.9" stroke="#C9A227" stroke-width="2.4"/>
+    <rect x="-22" y="-30" width="44" height="168" rx="8" fill="#F5F1E8" fill-opacity="0.14" stroke="#C9A227" stroke-width="3"/>
+    <path d="M0 -30v-18" fill="none" stroke="#C9A227" stroke-width="3"/>
+  </g>
+  <text x="80" y="560" fill="#C9A227" font-family="Georgia, serif" font-size="28" letter-spacing="6">ESPIRITUALIDADE</text>
+</svg>

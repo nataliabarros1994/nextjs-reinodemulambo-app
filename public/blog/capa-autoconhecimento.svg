@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <radialGradient id="g" cx="50%" cy="40%" r="75%">
+      <stop offset="0%" stop-color="#6B21A8"/>
+      <stop offset="48%" stop-color="#2E0A3F"/>
+      <stop offset="100%" stop-color="#0A0A0A"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#g)"/>
+  <circle cx="980" cy="120" r="190" fill="none" stroke="#C9A227" stroke-opacity="0.26"/>
+  <circle cx="200" cy="500" r="140" fill="#C1121F" fill-opacity="0.14"/>
+  <g transform="translate(600 310)">
+    <path d="M30 -90a96 96 0 1 0 40 168 80 80 0 0 1-40-168Z" fill="#F5F1E8" fill-opacity="0.12" stroke="#C9A227" stroke-width="3"/>
+    <circle cx="-70" cy="-50" r="5" fill="#C9A227"/>
+    <circle cx="-88" cy="20" r="3" fill="#C9A227"/>
+    <circle cx="-40" cy="80" r="2.4" fill="#C9A227"/>
+  </g>
+  <text x="80" y="560" fill="#C9A227" font-family="Georgia, serif" font-size="28" letter-spacing="6">AUTOCONHECIMENTO</text>
+</svg>

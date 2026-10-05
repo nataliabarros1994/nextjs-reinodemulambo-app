@@ -85,7 +85,7 @@ export function Home() {
             <SectionTitle
               eyebrow="valores e serviços"
               title={<>Escolha o encontro que o seu momento pede</>}
-              lede="Cada leitura tem tempo, formato e valor claros. Pague para liberar a agenda e escolher o horário."
+              lede="Cada leitura tem tempo, formato e valor claros. Você agenda e paga no Calendly, via Stripe."
             />
             <div className="mt-10">
               <PriceTable />
@@ -107,9 +107,9 @@ export function Home() {
             <SectionTitle eyebrow="como funciona" title={<>Três passos, uma conversa</>} />
             <div className="mt-10 grid gap-6 md:grid-cols-3">
               {[
-                ["01", "Você escolhe o serviço", "Na tabela de valores, com o formato e o preço já claros."],
-                ["02", "Paga para liberar a agenda", "Pix ou cartão. O horário só aparece depois do pagamento. Não reembolsável."],
-                ["03", "Escolhe o horário e conversamos", "Com o pagamento confirmado, você marca o dia na agenda."],
+                ["01", "Você escolhe o encontro", "Na tabela de valores, com formato e preço já claros."],
+                ["02", "Agenda e paga no Calendly", "O Stripe cobra na confirmação do horário. Pix ou cartão. Sem reembolso."],
+                ["03", "Conversamos no dia marcado", "Texto, áudio ou vídeo, com sigilo e tempo de escuta."],
               ].map(([n, t, d]) => (
                 <Card key={n}>
                   <span className="text-dourado">{n}</span>

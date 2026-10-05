@@ -210,9 +210,9 @@ a { color: inherit; text-decoration: none; }
 
 .container-wide {
   width: 100%;
-  max-width: none;
-  margin-inline: 0;
-  padding-inline: clamp(16px, 2vw, 32px);
+  max-width: 1080px;
+  margin-inline: auto;
+  padding-inline: clamp(20px, 4vw, 32px);
   box-sizing: border-box;
 }
 
@@ -350,7 +350,7 @@ a { color: inherit; text-decoration: none; }
 .main-nav {
   display: flex;
   align-items: center;
-  gap: 22px;
+  gap: 18px;
 }
 .main-nav a:not(.btn) {
   color: rgba(245, 241, 232, 0.72);
@@ -382,7 +382,7 @@ a { color: inherit; text-decoration: none; }
 .hero {
   position: relative;
   width: 100%;
-  min-height: calc(100svh - 88px);
+  min-height: min(84svh, 720px);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -409,9 +409,15 @@ a { color: inherit; text-decoration: none; }
 .page-hero {
   width: 100%;
   overflow: visible;
-  padding: 64px 0 80px;
+  padding: 40px 0 32px;
   background: radial-gradient(ellipse at 80% 20%, rgba(107, 33, 168, 0.16), transparent 42%);
   border-bottom: 1px solid rgba(201, 162, 39, 0.18);
+}
+.page-hero h1 {
+  max-width: 18ch;
+  font-size: clamp(1.85rem, 4vw, 2.75rem);
+  line-height: 1.15;
+  letter-spacing: 0.02em;
 }
 
 .hero-content {
@@ -419,17 +425,17 @@ a { color: inherit; text-decoration: none; }
   z-index: 2;
   text-align: center;
   width: 100%;
-  max-width: none;
+  max-width: 640px;
   margin: 0 auto;
-  padding: 72px 0 96px;
+  padding: 56px 0 72px;
 }
 .hero h1 {
-  margin: 18px 0 10px;
+  margin: 16px 0 12px;
   font-family: var(--font-display);
   font-weight: 500;
-  font-size: clamp(3rem, 11vw, 8rem);
-  line-height: 1;
-  letter-spacing: 0.04em;
+  font-size: clamp(2.35rem, 6vw, 3.75rem);
+  line-height: 1.08;
+  letter-spacing: 0.03em;
 }
 .hero-sub {
   color: #a855f7;
@@ -750,9 +756,9 @@ a { color: inherit; text-decoration: none; }
 
 .calendly-box {
   position: relative;
-  width: min(100%, 500px);
+  width: min(100%, 560px);
   min-width: 0;
-  height: 720px;
+  height: 700px;
   margin-inline: auto;
   overflow: hidden;
   border: 0;
@@ -1003,8 +1009,8 @@ a { color: inherit; text-decoration: none; }
 }
 
 @media (max-width: 560px) {
-  .container-wide { padding-inline: 16px; }
-  .hero h1 { font-size: clamp(2.6rem, 14vw, 3.6rem); }
+  .container-wide { padding-inline: 18px; }
+  .hero h1 { font-size: clamp(2.1rem, 11vw, 2.8rem); }
   .portrait-circle { width: min(280px, 82vw); }
   .wa-float { right: 14px; bottom: 14px; width: 52px; height: 52px; }
   .sound-toggle { left: 12px; bottom: 14px; }

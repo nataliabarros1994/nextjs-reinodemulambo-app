@@ -5,7 +5,7 @@ import { Contact } from "@/views/Contact";
 export const metadata: Metadata = {
   title: "Agendar consulta — Reino de Mulambo | Tarô e búzios online",
   description:
-    "Pague a consulta para liberar a agenda. O horário só é escolhido depois da confirmação do pagamento.",
+    "Escolha o encontro e confirme o horário no Calendly. O pagamento é feito na agenda, via Stripe.",
 };
 
 export default function Page() {

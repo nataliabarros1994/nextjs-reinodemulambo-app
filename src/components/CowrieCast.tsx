@@ -1,6 +1,6 @@
 "use client";
 const panoBuzios = "/pano-buzios.jpg";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { reflectionMessages } from "@/data/messages.js";
 import { Button } from "@/components/Button";
@@ -11,10 +11,14 @@ const STORAGE = "mae-buzios-plays";
 
 export function CowrieCast() {
   const reduced = useReducedMotion();
-  const [plays, setPlays] = useState(() => typeof window !== "undefined" ? Number(sessionStorage.getItem(STORAGE) || 0) : 0);
+  const [plays, setPlays] = useState(0);
   const [playing, setPlaying] = useState(false);
   const [result, setResult] = useState(false);
   const [message, setMessage] = useState("");
+
+  useEffect(() => {
+    setPlays(Number(sessionStorage.getItem(STORAGE) || 0));
+  }, []);
 
   const play = () => {
     if (playing) return;
@@ -70,7 +74,7 @@ export function CowrieCast() {
                   </Button>
                 ) : (
                   <Button href={pathToPay("buzios-tradicional")}>
-                    Pay e agendar
+                    Agendar consulta
                   </Button>
                 )}
               </div>

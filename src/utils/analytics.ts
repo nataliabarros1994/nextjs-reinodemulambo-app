@@ -17,10 +17,47 @@ export function trackGAEvent(event: string, params?: Record<string, unknown>) {
   }
 }
 
-// Meta Pixel
+const META_STANDARD = new Set([
+  "PageView",
+  "ViewContent",
+  "Search",
+  "AddToCart",
+  "AddToWishlist",
+  "InitiateCheckout",
+  "AddPaymentInfo",
+  "Purchase",
+  "Lead",
+  "CompleteRegistration",
+  "Contact",
+  "CustomizeProduct",
+  "Donate",
+  "FindLocation",
+  "Schedule",
+  "StartTrial",
+  "SubmitApplication",
+  "Subscribe",
+]);
+
+const META_ALIASES: Record<string, string> = {
+  begin_checkout: "InitiateCheckout",
+  purchase: "Purchase",
+  sign_up: "CompleteRegistration",
+  lead: "Lead",
+  contact: "Contact",
+  view_article: "ViewContent",
+  view_service: "ViewContent",
+  click_whatsapp: "Contact",
+  share: "Share",
+};
+
+// Meta Pixel — eventos padrão via track; o restante via trackCustom
 export function trackMetaEvent(event: string, params?: Record<string, unknown>) {
-  if (typeof window !== "undefined" && window.fbq) {
-    window.fbq("track", event, params);
+  if (typeof window === "undefined" || !window.fbq) return;
+  const mapped = META_ALIASES[event] || event;
+  if (META_STANDARD.has(mapped)) {
+    window.fbq("track", mapped, params);
+  } else {
+    window.fbq("trackCustom", mapped, params);
   }
 }
 

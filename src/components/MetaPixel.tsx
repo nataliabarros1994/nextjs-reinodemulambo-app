@@ -45,8 +45,31 @@ export function MetaPixel() {
 
 // Eventos de conversão
 export function trackMetaEvent(event: string, data?: Record<string, unknown>) {
-  if (typeof window !== "undefined" && window.fbq) {
+  if (typeof window === "undefined" || !window.fbq) return;
+  const standard = new Set([
+    "PageView",
+    "ViewContent",
+    "Search",
+    "AddToCart",
+    "AddToWishlist",
+    "InitiateCheckout",
+    "AddPaymentInfo",
+    "Purchase",
+    "Lead",
+    "CompleteRegistration",
+    "Contact",
+    "CustomizeProduct",
+    "Donate",
+    "FindLocation",
+    "Schedule",
+    "StartTrial",
+    "SubmitApplication",
+    "Subscribe",
+  ]);
+  if (standard.has(event)) {
     window.fbq("track", event, data);
+  } else {
+    window.fbq("trackCustom", event, data);
   }
 }
 

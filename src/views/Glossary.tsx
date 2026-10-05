@@ -49,7 +49,7 @@ export function Glossary() {
   }, [busca, categoria]);
 
   const schema = useMemo(() => {
-    const origem = typeof window === "undefined" ? "" : window.location.origin;
+    const origem = "https://reinodemulambo.com";
     return {
       "@context": "https://schema.org",
       "@graph": [

@@ -5,7 +5,7 @@ const mensagens = {
   buzios: "Olá, Reino de Mulambo! Vim pelo site e gostaria de agendar uma leitura de búzios.",
   taro: "Olá, Reino de Mulambo! Vim pelo site e gostaria de agendar uma leitura de tarô.",
   orientacao: "Olá, Reino de Mulambo! Vim pelo site e gostaria de uma orientação espiritual.",
-  leitura: "Olá, Reino de Mulambo! Li a página A Reading e gostaria de agendar uma consulta.",
+  leitura: "Olá, Reino de Mulambo! Li a página A Leitura e gostaria de agendar uma consulta.",
   taroDoDia: "Olá, Reino de Mulambo! Tirei o Tarô do Dia no site e gostaria de aprofundar a reading.",
   vela: "Olá, Reino de Mulambo! Acendi uma vela no site e gostaria de agendar uma consulta.",
   quiz: "Olá, Reino de Mulambo! Fiz o quiz do site e gostaria de agendar a consulta sugerida.",

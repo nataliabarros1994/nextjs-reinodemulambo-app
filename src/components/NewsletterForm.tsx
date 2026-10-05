@@ -1,5 +1,5 @@
 "use client";
-import { type FormEvent, useState } from "react";
+import { type FormEvent, useEffect, useState } from "react";
 import { Send } from "lucide-react";
 import { Button } from "@/components/Button";
 import { KlaviyoEvents, saveEmailLocally } from "@/utils/klaviyo";
@@ -8,8 +8,12 @@ import { Events } from "@/utils/analytics";
 const KEY = "mae-newsletter";
 
 export function NewsletterForm() {
-  const [done, setDone] = useState(() => typeof window !== "undefined" && Boolean(localStorage.getItem(KEY)));
+  const [done, setDone] = useState(false);
   const [email, setEmail] = useState("");
+
+  useEffect(() => {
+    setDone(Boolean(localStorage.getItem(KEY)));
+  }, []);
 
   const submit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();

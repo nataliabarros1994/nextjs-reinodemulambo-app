@@ -68,13 +68,20 @@ export function CalendlyEmbed({ url }: { url: string }) {
   }, [url]);
 
   return (
-    <div className="calendly-box" ref={boxRef}>
-      <div
-        ref={ref}
-        className="calendly-inline-widget"
-        data-url={url}
-        style={{ minWidth: 320, height: "100%" }}
-      />
+    <div>
+      <div className="calendly-box" ref={boxRef}>
+        <div
+          ref={ref}
+          className="calendly-inline-widget"
+          data-url={url}
+          style={{ minWidth: 320, height: "100%" }}
+        />
+      </div>
+      <p className="mt-4 text-center text-sm text-branco-lua/55">
+        <a href={url} target="_blank" rel="noreferrer" className="underline decoration-dourado/40 underline-offset-4 hover:text-dourado">
+          Se a agenda não carregar, abra o Calendly numa nova aba
+        </a>
+      </p>
     </div>
   );
 }

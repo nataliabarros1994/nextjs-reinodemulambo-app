@@ -1,6 +1,6 @@
 "use client";
 /**
- * Página A Reading — /leitura
+ * Página A Leitura — /leitura
  * Textos em src/data/reading.js.
  */
 import { reading } from "@/data/reading.js";
@@ -10,7 +10,7 @@ import { Seo } from "@/components/Seo";
 import { linkWhatsApp } from "@/utils/whatsapp.js";
 
 export function Reading() {
-  const origem = typeof window === "undefined" ? "https://reinodemulambo.com" : window.location.origin;
+  const origem = "https://reinodemulambo.com";
   const schema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",

@@ -16,7 +16,7 @@ export function Works() {
   return (
     <>
       <Seo
-        title="Works espirituais — Reino de Mulambo"
+        title="Trabalhos espirituais — Reino de Mulambo"
         description="Limpeza, abertura de caminhos, harmonização e proteção. Cada caso é único. Valores somente após a consulta."
       />
       <section className="page-hero">

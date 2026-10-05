@@ -1,56 +1,31 @@
 "use client";
-import { useEffect } from "react";
 import { CalendarDays, MessageCircle, Video } from "lucide-react";
-import { useRouter, useSearchParams } from "next/navigation";
 import { config } from "@/data/config.js";
 import { priceTable } from "@/data/services.js";
 import { EmailLink } from "@/components/EmailLink";
 import { InstagramLink } from "@/components/InstagramLink";
 import { Button } from "@/components/Button";
 import { Seo } from "@/components/Seo";
-import { offerBySlugOrId } from "@/utils/calendly.js";
-import { pathToPay, confirmationPath, hasPayment } from "@/utils/payment.js";
-
-function paramsDaAgenda(search: string) {
-  return new URLSearchParams(search.startsWith("?") ? search.slice(1) : search);
-}
+import { pathToPay } from "@/utils/payment.js";
 
 export function Contact() {
-  const searchParams = useSearchParams();
-  const q = searchParams.toString();
-  const search = q ? `?${q}` : "";
-  const router = useRouter();
-  
-  const params = paramsDaAgenda(search);
-  const evento = params.get("evento") || params.get("servico") || "";
-  const servico = offerBySlugOrId(evento);
-
-  useEffect(() => {
-    if (!servico) return;
-    if (hasPayment(servico.id)) {
-      router.push(confirmationPath(servico.id));
-      return;
-    }
-    router.push(pathToPay(servico.id));
-  }, [servico]);
-
   return (
     <>
       <Seo
         title="Agendar consulta — Reino de Mulambo | Tarô e búzios online"
-        description="Pague a consulta para liberar a agenda. O horário só é escolhido depois da confirmação do pagamento."
+        description="Escolha o encontro e confirme o horário no Calendly. O pagamento é feito na agenda, via Stripe."
       />
       <section className="page-hero">
         <div className="container-wide">
           <span className="eyebrow">contato</span>
-          <h1 className="font-display mt-4 text-5xl md:text-7xl">Pague primeiro. Depois escolha o horário.</h1>
+          <h1 className="font-display mt-4">Agenda e pagamento no mesmo passo.</h1>
         </div>
       </section>
       <section className="pb-20">
         <div className="container-wide">
-          <div className="mb-10 max-w-3xl">
+          <div className="mb-10 max-w-xl">
             <p className="leading-7 text-branco-lua/70">
-              A agenda fica bloqueada até o pagamento. Escolha o serviço, pague e só então marque o dia e o turno.
+              Escolha o serviço, confirme o horário no Calendly e pague ali mesmo, pelo Stripe. O WhatsApp fica só para dúvidas.
             </p>
             <div className="mt-6 flex flex-wrap gap-x-6 gap-y-3 text-sm">
               <p className="flex items-center gap-3">
@@ -75,7 +50,7 @@ export function Contact() {
                 <p className="mt-2 text-sm text-branco-lua/60">{item.duracao}</p>
                 <p className="mt-3 text-xl text-dourado">{item.valor}</p>
                 <Button className="mt-5" href={pathToPay(item.id)}>
-                  Pay e agendar
+                  Agendar
                 </Button>
               </article>
             ))}

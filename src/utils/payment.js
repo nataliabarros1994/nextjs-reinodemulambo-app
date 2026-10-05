@@ -1,19 +1,28 @@
 const STORAGE = "mae-natalia-pago";
 
+const SERVICE_ALIASES = {
+  buzios: "buzios-tradicional",
+  taro: "taro-texto",
+};
+
 function idLimpo(servicoId) {
   return String(servicoId || "").replace(/^\/+|\/+$/g, "");
 }
 
-/** Checkout interno. O Calendly só abre depois do pagamento. */
-export function pathToPay(servicoId) {
+export function resolveServiceId(servicoId) {
   const id = idLimpo(servicoId);
-  return id ? `/pagar?servico=${encodeURIComponent(id)}` : "/servicos";
+  return SERVICE_ALIASES[id] || id;
 }
 
-/** Agenda liberada após o pagamento. */
+/** Agenda no Calendly (pagamento Stripe na confirmação do horário). */
+export function pathToPay(servicoId) {
+  const id = resolveServiceId(servicoId);
+  return id ? `/agendar?servico=${encodeURIComponent(id)}` : "/agendar";
+}
+
+/** Mesmo destino: a agenda já cobra via Stripe. */
 export function confirmationPath(servicoId) {
-  const id = idLimpo(servicoId);
-  return id ? `/pago?servico=${encodeURIComponent(id)}` : "/servicos";
+  return pathToPay(servicoId);
 }
 
 export function markPaid(servicoId) {

@@ -26,8 +26,8 @@ export function offerBySlugOrId(chave) {
   return priceTable.find((item) => item.id === valor || item.calendlySlug === valor);
 }
 
-/** Botões de agendar vão primeiro para o checkout. */
+/** Botões de agendar abrem o Calendly do serviço. */
 export function schedulePath(slugOuId) {
   const oferta = offerBySlugOrId(slugOuId);
-  return oferta ? pathToPay(oferta.id) : "/servicos";
+  return oferta ? pathToPay(oferta.id) : "/agendar";
 }

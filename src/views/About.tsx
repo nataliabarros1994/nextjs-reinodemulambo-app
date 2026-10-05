@@ -15,7 +15,7 @@ export function About() {
   return (
     <>
       <Seo
-        title={`About ${config.nome} — Jogo de Búzios e Tarô Online`}
+        title={`Sobre o ${config.nome} — Jogo de Búzios e Tarô Online`}
         description="Conheça a história, o caminho espiritual e os valores do Reino de Mulambo."
       />
       <section className="page-hero">

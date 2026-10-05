@@ -15,16 +15,18 @@ Domínio: `https://reinodemulambo.com`
 - **Framer Motion** para animações
 - **MDX** para o blog (`@next/mdx` + `remark-frontmatter` + `remark-mdx-frontmatter`)
 - **pnpm** como gerenciador de pacotes
-- Deploy: Cloudflare Pages
+- Deploy: Cloudflare Workers via OpenNext (`opennextjs-cloudflare`)
 
 ## Comandos
 
 ```bash
 pnpm install     # instala dependências
-pnpm dev         # servidor de desenvolvimento (0.0.0.0:3000)
-pnpm build       # build de produção
+pnpm dev         # servidor de desenvolvimento (:: / 0.0.0.0:3000)
+pnpm build       # build de produção Next.js
 pnpm start       # serve o build de produção
 pnpm typecheck   # checagem de tipos (tsc --noEmit)
+pnpm run build:cf  # bundle OpenNext para Cloudflare
+pnpm run deploy    # publica o Worker reino-de-mulambo
 ```
 
 ## Estrutura

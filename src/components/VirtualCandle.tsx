@@ -1,5 +1,5 @@
 "use client";
-import { type FormEvent, useMemo, useState } from "react";
+import { type FormEvent, useEffect, useState } from "react";
 import { Button } from "@/components/Button";
 import { Card } from "@/components/Card";
 import { SectionTitle } from "@/components/SectionTitle";
@@ -20,14 +20,22 @@ function weekKey() {
 export function VirtualCandle() {
   const [cor, setCor] = useState("branca");
   const [intencao, setIntencao] = useState("");
-  const [acesa, setAcesa] = useState(() => typeof window !== "undefined" && localStorage.getItem("mae-vela-acesa") === "1");
-  const [saved, setSaved] = useState(() => typeof window !== "undefined" ? localStorage.getItem("mae-vela-intencao") ?? "" : "");
-  const [savedCor, setSavedCor] = useState(() => typeof window !== "undefined" ? localStorage.getItem("mae-vela-cor") ?? "branca" : "branca");
-  const count = useMemo(() => {
-    const raw = typeof window !== "undefined" ? JSON.parse(localStorage.getItem("mae-velas-semana") || "{}") : {};
-    if (raw.week !== weekKey()) return 0;
-    return Number(raw.count || 0);
-  }, [acesa]);
+  const [acesa, setAcesa] = useState(false);
+  const [saved, setSaved] = useState("");
+  const [savedCor, setSavedCor] = useState("branca");
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    setAcesa(localStorage.getItem("mae-vela-acesa") === "1");
+    setSaved(localStorage.getItem("mae-vela-intencao") ?? "");
+    setSavedCor(localStorage.getItem("mae-vela-cor") ?? "branca");
+    try {
+      const raw = JSON.parse(localStorage.getItem("mae-velas-semana") || "{}");
+      setCount(raw.week === weekKey() ? Number(raw.count || 0) : 0);
+    } catch {
+      setCount(0);
+    }
+  }, []);
 
   const hex = COLORS.find((c) => c.id === (acesa ? savedCor : cor))?.hex ?? "#F5F1E8";
 
@@ -42,6 +50,7 @@ export function VirtualCandle() {
     const week = weekKey();
     const next = raw.week === week ? Number(raw.count || 0) + 1 : 1;
     localStorage.setItem("mae-velas-semana", JSON.stringify({ week, count: next }));
+    setCount(next);
     setSaved(text);
     setSavedCor(cor);
     setAcesa(true);

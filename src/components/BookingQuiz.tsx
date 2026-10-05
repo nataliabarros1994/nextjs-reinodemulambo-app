@@ -117,7 +117,7 @@ export function BookingQuiz() {
                   Formato {modo}, preferência de {periodo}.
                 </p>
                 <Button className="mt-6" href={hrefQuiz}>
-                  Pay e agendar {servico.nome}
+                  Agendar {servico.nome}
                 </Button>
               </motion.div>
             )}

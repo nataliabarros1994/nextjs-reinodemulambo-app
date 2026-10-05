@@ -1,9 +1,12 @@
 {
   "name": "reino-de-mulambo",
   "compatibility_date": "2026-09-16",
+  "compatibility_flags": ["nodejs_compat"],
+  "workers_dev": true,
+  "main": ".open-next/worker.js",
   "assets": {
-    "directory": "./dist/public",
-    "not_found_handling": "single-page-application"
+    "directory": ".open-next/assets",
+    "binding": "ASSETS"
   },
   "routes": [
     { "pattern": "reinodemulambo.com", "custom_domain": true },

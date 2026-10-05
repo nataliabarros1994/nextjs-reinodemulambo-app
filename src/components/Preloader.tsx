@@ -3,13 +3,12 @@ import { useEffect, useState } from "react";
 import { ZodiacWheel } from "@/components/ZodiacWheel";
 
 export function Preloader() {
-  const skip = typeof window !== "undefined" && new URLSearchParams(window.location.search).has("skipLoader");
-  const [visible, setVisible] = useState(!skip);
-  const [gone, setGone] = useState(skip);
+  const [visible, setVisible] = useState(true);
+  const [gone, setGone] = useState(false);
 
   useEffect(() => {
-    if (skip) return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    const skip = new URLSearchParams(window.location.search).has("skipLoader");
+    if (skip || window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       setVisible(false);
       setGone(true);
       return;
@@ -20,7 +19,7 @@ export function Preloader() {
       clearTimeout(t1);
       clearTimeout(t2);
     };
-  }, [skip]);
+  }, []);
 
   if (gone) return null;
   return (

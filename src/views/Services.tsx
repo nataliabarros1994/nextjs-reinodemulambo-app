@@ -22,7 +22,7 @@ export function Services() {
       <section className="py-16">
         <div className="container-wide">
           <p className="max-w-2xl leading-7 text-branco-lua/75">
-            Escolha o formato e o oráculo. Pague primeiro para liberar a agenda. O WhatsApp fica só para dúvidas.
+            Escolha o formato e o oráculo. O horário e o pagamento acontecem no Calendly, via Stripe. Leituras e búzios: segunda, terça, quarta e sexta. Quintas-feiras: somente consulta com a Entidade. O WhatsApp fica só para dúvidas.
           </p>
           <div className="mt-10">
             <PriceTable />
@@ -59,7 +59,7 @@ export function Services() {
               <p className="mt-5 text-sm text-dourado">{s.duracao}</p>
               <p className="text-sm text-branco-lua/55">{s.formatos.join(" · ")}</p>
               <Button className="mt-6" href={oferta ? pathToPay(oferta.id) : "/contato"}>
-                Pay e agendar {s.nome}
+                Agendar {s.nome}
               </Button>
             </Card>
             );

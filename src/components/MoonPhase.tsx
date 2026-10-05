@@ -1,9 +1,29 @@
 "use client";
-import { useMemo } from "react";
+import { useEffect, useState } from "react";
 import { getLunarPhase } from "@/utils/moon.js";
 
+type LunarPhase = ReturnType<typeof getLunarPhase>;
+
 export function MoonPhase({ compact = false }: { compact?: boolean }) {
-  const fase = useMemo(() => getLunarPhase(), []);
+  const [fase, setFase] = useState<LunarPhase | null>(null);
+
+  useEffect(() => {
+    setFase(getLunarPhase());
+  }, []);
+
+  if (!fase) {
+    return (
+      <div className={compact ? "flex items-center gap-5" : "flex flex-col items-center text-center"}>
+        <svg width={compact ? 88 : 160} height={compact ? 88 : 160} viewBox="0 0 100 100" aria-hidden="true">
+          <circle cx="50" cy="50" r="40" fill="#1a1024" stroke="#C9A227" strokeWidth="1.5" />
+        </svg>
+        <div>
+          <p className="eyebrow">Lua</p>
+          <p className={`font-display ${compact ? "text-xl" : "mt-2 text-3xl"}`}>céu de hoje</p>
+        </div>
+      </div>
+    );
+  }
   return (
     <div className={compact ? "flex items-center gap-5" : "flex flex-col items-center text-center"}>
       <svg width={compact ? 88 : 160} height={compact ? 88 : 160} viewBox="0 0 100 100" aria-label={`Fase atual: ${fase.nome}`}>

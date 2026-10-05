@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { config } from "@/data/config.js";
 import { Logo } from "@/components/Logo";
 import { Button } from "@/components/Button";
 
@@ -15,13 +14,10 @@ export function Navbar() {
 
   const nav = [
     { href: "/", label: "Início" },
-    { href: "/sobre", label: "About" },
+    { href: "/sobre", label: "Sobre" },
     { href: "/servicos", label: "Serviços" },
-    { href: "/leitura", label: "A Reading" },
-    { href: "/glossario", label: "Glossário" },
-    ...(config.TRABALHOS_ATIVOS ? [{ href: "/trabalhos", label: "Works" }] : []),
     { href: "/blog", label: "Blog" },
-    { href: "/contato", label: "Contact" },
+    { href: "/contato", label: "Contato" },
   ];
 
   useEffect(() => {

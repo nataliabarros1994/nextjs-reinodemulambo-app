@@ -19,11 +19,12 @@ export function PriceTable() {
           <p className="preco-desc">{item.descricao}</p>
           <p className="preco-tempo">
             <Clock size={14} /> {item.duracao}
+            {item.disponibilidade ? ` · ${item.disponibilidade}` : ""}
           </p>
           <p className="preco-valor">{item.valor}</p>
           <div className="preco-acoes">
             <Button href={pathToPay(item.id)}>
-              <CalendarDays size={16} /> Pay e agendar
+              <CalendarDays size={16} /> Agendar
             </Button>
             <Button href={linkWhatsAppOferta(item.nome, item.valor)} external variant="contornado">
               <MessageCircle size={16} /> Tirar dúvidas no WhatsApp

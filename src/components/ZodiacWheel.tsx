@@ -1,6 +1,16 @@
 "use client";
 const simbolos = ["♈", "♉", "♊", "♋", "♌", "♍", "♎", "♏", "♐", "♑", "♒", "♓"];
 
+/** Posições arredondadas para o SVG hidratar igual no servidor e no cliente. */
+const POSITIONS = simbolos.map((simbolo, i) => {
+  const angle = ((i * 30 - 90) * Math.PI) / 180;
+  return {
+    simbolo,
+    x: (100 + Math.cos(angle) * 80).toFixed(2),
+    y: (100 + Math.sin(angle) * 80).toFixed(2),
+  };
+});
+
 /** Roda decorativa do preloader e do hero — sem dados de signos. */
 export function ZodiacWheel({ className = "h-64 w-64" }: { className?: string }) {
   return (
@@ -8,16 +18,11 @@ export function ZodiacWheel({ className = "h-64 w-64" }: { className?: string })
       <circle cx="100" cy="100" r="92" fill="none" stroke="currentColor" strokeOpacity="0.35" />
       <circle cx="100" cy="100" r="70" fill="none" stroke="currentColor" strokeOpacity="0.2" strokeDasharray="3 6" />
       <circle cx="100" cy="100" r="18" fill="none" stroke="currentColor" strokeOpacity="0.4" />
-      {simbolos.map((simbolo, i) => {
-        const angle = ((i * 30 - 90) * Math.PI) / 180;
-        const x = 100 + Math.cos(angle) * 80;
-        const y = 100 + Math.sin(angle) * 80;
-        return (
-          <text key={simbolo} x={x} y={y} textAnchor="middle" dominantBaseline="middle" fontSize="11" fill="currentColor">
-            {simbolo}
-          </text>
-        );
-      })}
+      {POSITIONS.map(({ simbolo, x, y }) => (
+        <text key={simbolo} x={x} y={y} textAnchor="middle" dominantBaseline="middle" fontSize="11" fill="currentColor">
+          {simbolo}
+        </text>
+      ))}
     </svg>
   );
 }

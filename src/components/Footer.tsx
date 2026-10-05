@@ -25,16 +25,16 @@ export function Footer() {
         </div>
         <div className="flex flex-col gap-3 text-sm text-branco-lua/70">
           <span className="eyebrow mb-1">Explorar</span>
-          <Link href="/sobre">About</Link>
+          <Link href="/sobre">Sobre</Link>
           <Link href="/servicos">Serviços</Link>
-          <Link href="/leitura">A Reading</Link>
+          <Link href="/leitura">A Leitura</Link>
           <Link href="/blog">Blog</Link>
           <Link href="/glossario">Glossário</Link>
-          {config.TRABALHOS_ATIVOS ? <Link href="/trabalhos">Works espirituais</Link> : null}
+          {config.TRABALHOS_ATIVOS ? <Link href="/trabalhos">Trabalhos espirituais</Link> : null}
         </div>
         <div className="flex flex-col gap-3 text-sm text-branco-lua/70">
-          <span className="eyebrow mb-1">Contact</span>
-          <Link href="/servicos">Agendar consulta</Link>
+          <span className="eyebrow mb-1">Contato</span>
+          <Link href="/agendar">Agendar consulta</Link>
           <EmailLink />
           <InstagramLink />
           <span className="inline-flex items-center gap-2">

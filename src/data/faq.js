@@ -2,7 +2,7 @@ export const faq = [
   {
     pergunta: "Como funciona o agendamento?",
     resposta:
-      "Você escolhe o serviço, paga (Pix ou cartão) e só então a agenda libera o horário. Os juros do cartão ficam por sua conta. O pagamento não é reembolsável.",
+      "Você escolhe o serviço e confirma o horário no Calendly. O Stripe cobra na hora da confirmação (Pix ou cartão). Os juros do cartão ficam por sua conta. O pagamento não é reembolsável.",
   },
   {
     pergunta: "Posso pedir reembolso?",
@@ -27,7 +27,7 @@ export const faq = [
   {
     pergunta: "Vocês divulgam valores no site?",
     resposta:
-      "Os valores das leituras estão na página de Serviços. Você paga primeiro e, com a confirmação, escolhe o horário. Works espirituais, quando realizados, só são tratados após avaliação.",
+      "Os valores das leituras estão na página de Serviços. Você agenda e paga no Calendly, via Stripe. Trabalhos espirituais, quando realizados, só são tratados após avaliação.",
   },
   {
     pergunta: "A consulta prevê trabalhos ou obrigações?",

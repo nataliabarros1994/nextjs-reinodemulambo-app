@@ -1,36 +1,45 @@
 "use client";
-import { useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { arcanosMaiores } from "@/data/tarot.js";
 import { Button } from "@/components/Button";
 import { SectionTitle } from "@/components/SectionTitle";
 import { linkWhatsApp } from "@/utils/whatsapp.js";
 
 const KEY = "mae-taro-dia";
+const PLACEHOLDER = arcanosMaiores[0];
 
 function todayKey() {
-  return new Date().toISOString().slice(0, 10);
+  const now = new Date();
+  const y = now.getFullYear();
+  const m = String(now.getMonth() + 1).padStart(2, "0");
+  const d = String(now.getDate()).padStart(2, "0");
+  return `${y}-${m}-${d}`;
 }
 
 export function TarotOfTheDay() {
-  const stored = useMemo(() => {
+  const [flipped, setFlipped] = useState(false);
+  const [already, setAlready] = useState(false);
+  const [carta, setCarta] = useState(PLACEHOLDER);
+
+  useEffect(() => {
     try {
-      return typeof window !== "undefined" ? JSON.parse(localStorage.getItem(KEY) || "null") : null;
+      const stored = JSON.parse(localStorage.getItem(KEY) || "null");
+      if (stored && stored.date === todayKey()) {
+        setCarta(arcanosMaiores.find((c: { id: number }) => c.id === stored.id) ?? PLACEHOLDER);
+        setFlipped(true);
+        setAlready(true);
+      }
     } catch {
-      return null;
+      /* ignore */
     }
   }, []);
-  const already = stored && stored.date === todayKey();
-  const [flipped, setFlipped] = useState(Boolean(already));
-  const [carta, setCarta] = useState(() => {
-    if (already) return arcanosMaiores.find((c: { id: number }) => c.id === stored.id) ?? arcanosMaiores[0];
-    return arcanosMaiores[Math.floor(Math.random() * arcanosMaiores.length)];
-  });
 
   const virar = () => {
     if (already || flipped) return;
     const pick = arcanosMaiores[Math.floor(Math.random() * arcanosMaiores.length)];
     setCarta(pick);
     setFlipped(true);
+    setAlready(true);
     localStorage.setItem(KEY, JSON.stringify({ date: todayKey(), id: pick.id }));
   };
 

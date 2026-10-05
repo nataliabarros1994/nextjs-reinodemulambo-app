@@ -1,16 +1,7 @@
 // ============================================================
-// KLAVIYO — Integração preparada
+// KLAVIYO — o browser só fala com /api/newsletter (sem CORS).
+// A chave privada fica no servidor: KLAVIYO_PRIVATE_KEY.
 // ============================================================
-// Para ativar:
-// 1. Crie uma conta em https://klaviyo.com
-// 2. Crie uma lista (ex: "Newsletter Reino de Mulambo")
-// 3. Copie a Public API Key (começa com "pk_")
-// 4. Adicione como variável de ambiente: KLAVIYO_PUBLIC_KEY
-// 5. Descomente as chamadas de API abaixo
-// ============================================================
-
-const KLAVIYO_PUBLIC_KEY = "pk_RnViaz_66d6e14a2829d9a58ad3d615f72526d213";
-const KLAVIYO_LIST_ID = "Yz7AcS"; // Lista "New Subscribers"
 
 interface KlaviyoProfile {
   email: string;
@@ -24,84 +15,42 @@ interface KlaviyoEvent {
   properties?: Record<string, unknown>;
 }
 
-// Adicionar contato à lista
+async function postNewsletter(payload: Record<string, unknown>): Promise<boolean> {
+  try {
+    const response = await fetch("/api/newsletter", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+    });
+    return response.ok;
+  } catch {
+    return false;
+  }
+}
+
 export async function klaviyoSubscribe(profile: KlaviyoProfile): Promise<boolean> {
-  if (!KLAVIYO_PUBLIC_KEY || !KLAVIYO_LIST_ID) {
-    console.warn("[Klaviyo] Credenciais não configuradas. Salvando localmente.");
-    return false;
-  }
-
-  try {
-    const response = await fetch(
-      `https://a.klaviyo.com/api/v2/list/${KLAVIYO_LIST_ID}/subscribe`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Klaviyo-API-Key ${KLAVIYO_PUBLIC_KEY}`,
-        },
-        body: JSON.stringify({
-          profiles: [
-            {
-              email: profile.email,
-              first_name: profile.first_name || "",
-              properties: {
-                $source: "site",
-                ...profile.properties,
-              },
-            },
-          ],
-        }),
-      }
-    );
-
-    return response.ok;
-  } catch (error) {
-    console.error("[Klaviyo] Erro ao assinar:", error);
-    return false;
-  }
+  return postNewsletter({
+    email: profile.email,
+    first_name: profile.first_name,
+    source: profile.properties?.$source,
+  });
 }
 
-// Rastrear evento
 export async function klaviyoTrackEvent(event: KlaviyoEvent): Promise<boolean> {
-  if (!KLAVIYO_PUBLIC_KEY) {
-    console.warn("[Klaviyo] Credenciais não configuradas.");
-    return false;
-  }
-
-  try {
-    const response = await fetch("https://a.klaviyo.com/api/track", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Klaviyo-API-Key ${KLAVIYO_PUBLIC_KEY}`,
-        },
-        body: JSON.stringify({
-          token: KLAVIYO_PUBLIC_KEY,
-          customer_properties: event.customer_properties,
-          event_name: event.event,
-          properties: event.properties,
-        }),
-      });
-
-    return response.ok;
-  } catch (error) {
-    console.error("[Klaviyo] Erro ao rastrear evento:", error);
-    return false;
-  }
+  return postNewsletter({
+    email: event.customer_properties.email,
+    event: event.event,
+    properties: event.properties,
+  });
 }
 
-// Eventos pré-definidos
 export const KlaviyoEvents = {
-  // Newsletter
   newsletterSignup: (email: string) =>
     klaviyoSubscribe({ email, properties: { $source: "newsletter" } }),
 
-  // Popup de desconto
   discountSignup: (email: string) =>
     klaviyoSubscribe({ email, properties: { $source: "popup-desconto", discount: "10%" } }),
 
-  // Compra
   purchase: (email: string, value: number, serviceName: string) =>
     klaviyoTrackEvent({
       event: "Comprou",
@@ -109,7 +58,6 @@ export const KlaviyoEvents = {
       properties: { value, service: serviceName },
     }),
 
-  // Lead
   lead: (email: string, source: string) =>
     klaviyoTrackEvent({
       event: "Lead",
@@ -118,7 +66,6 @@ export const KlaviyoEvents = {
     }),
 };
 
-// Fallback: salva localmente quando Klaviyo não está configurado
 export function saveEmailLocally(email: string, source: string) {
   const list = JSON.parse(localStorage.getItem("mae-emails") || "[]");
   localStorage.setItem(

@@ -33,10 +33,7 @@ export function BookingQuiz() {
             ? "30min-taro-video"
             : "30min-taro-texto"
         : "";
-  const ofertaQuiz = priceTable.find(
-    (t: { calendlySlug?: string; calcomSlug?: string }) =>
-      t.calcomSlug === slugQuiz || t.calendlySlug === slugQuiz,
-  );
+  const ofertaQuiz = priceTable.find((t: { calcomSlug?: string }) => t.calcomSlug === slugQuiz);
   const hrefQuiz = ofertaQuiz ? pathToPay(ofertaQuiz.id) : "/contato";
 
   return (

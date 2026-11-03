@@ -27,8 +27,40 @@ export function publicOrigin(request: Request): string {
   return origin;
 }
 
-function offerReais(offer: PriceOffer): number {
+export function offerReais(offer: PriceOffer): number {
   return Math.round(Number(offer.amountCents)) / 100;
+}
+
+export function checkoutPreferencePayload(offer: PriceOffer, origin: string, payerEmail = "") {
+  const reais = offerReais(offer);
+  const success = `${origin}/agendar?servico=${encodeURIComponent(offer.id)}`;
+  const failure = `${origin}/pagar/${encodeURIComponent(offer.id)}`;
+  const email = payerEmail.trim().toLowerCase();
+  return {
+    items: [
+      {
+        id: offer.id,
+        title: offer.nome,
+        description: offer.descricao,
+        quantity: 1,
+        currency_id: "BRL",
+        unit_price: reais,
+        category_id: "services",
+      },
+    ],
+    statement_descriptor: "REINO MULAMBO",
+    external_reference: offer.id,
+    payer: email ? { email } : undefined,
+    metadata: {
+      serviceId: offer.id,
+      calcomSlug: offer.calcomSlug,
+      payerEmail: email,
+    },
+    back_urls: { success, pending: success, failure },
+    auto_return: "approved" as const,
+    notification_url: `${origin}/api/mercadopago/webhook`,
+    expires: false,
+  };
 }
 
 async function mpFetch(path: string, init?: RequestInit) {
@@ -56,38 +88,10 @@ async function mpFetch(path: string, init?: RequestInit) {
 }
 
 export async function createPreference(offer: PriceOffer, origin: string, payerEmail = "") {
-  const reais = offerReais(offer);
-  const success = `${origin}/agendar?servico=${encodeURIComponent(offer.id)}`;
-  const failure = `${origin}/pagar/${encodeURIComponent(offer.id)}`;
-  const email = payerEmail.trim().toLowerCase();
   return mpFetch("/checkout/preferences", {
     method: "POST",
     headers: { "X-Idempotency-Key": crypto.randomUUID() },
-    body: JSON.stringify({
-      items: [
-        {
-          id: offer.id,
-          title: offer.nome,
-          description: offer.descricao,
-          quantity: 1,
-          currency_id: "BRL",
-          unit_price: reais,
-          category_id: "services",
-        },
-      ],
-      statement_descriptor: "REINO MULAMBO",
-      external_reference: offer.id,
-      payer: email ? { email } : undefined,
-      metadata: {
-        serviceId: offer.id,
-        calcomSlug: offer.calcomSlug,
-        payerEmail: email,
-      },
-      back_urls: { success, pending: success, failure },
-      auto_return: "approved",
-      notification_url: `${origin}/api/mercadopago/webhook`,
-      expires: false,
-    }),
+    body: JSON.stringify(checkoutPreferencePayload(offer, origin, payerEmail)),
   });
 }
 
@@ -148,6 +152,32 @@ export function checkoutUrl(preference: Record<string, unknown>): string {
   const token = mercadoPagoAccessToken();
   if (token.startsWith("TEST-")) return sandbox || live;
   return live || sandbox;
+}
+
+export type SessionUnlock = {
+  status: number;
+  body: { ok: boolean; paid: boolean; pending: boolean; reason?: string; dev?: boolean };
+};
+
+/** Prova de pagamento para abrir a agenda. Sem chamada de rede quando o id falta. */
+export async function sessionUnlock(serviceId: string, paymentId: string): Promise<SessionUnlock> {
+  const offer = findOffer(serviceId);
+  if (!paymentId || !offer) {
+    return { status: 400, body: { ok: false, paid: false, pending: false } };
+  }
+  if (process.env.NODE_ENV !== "production" && paymentId === "test") {
+    return { status: 200, body: { ok: true, paid: true, pending: false, dev: true } };
+  }
+  if (!mercadoPagoAccessToken()) {
+    return { status: 503, body: { ok: false, paid: false, pending: false, reason: "unconfigured" } };
+  }
+  try {
+    const payment = await retrievePayment(paymentId);
+    const result = paymentUnlocksOffer(payment, offer);
+    return { status: 200, body: { ok: true, ...result } };
+  } catch {
+    return { status: 502, body: { ok: false, paid: false, pending: false } };
+  }
 }
 
 export function paymentUnlocksOffer(

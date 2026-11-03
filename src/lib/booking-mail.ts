@@ -79,9 +79,7 @@ export function hostNotifyEmail(): string {
 export function offerFromCalcomSlug(slug: string): PriceOffer | undefined {
   const valor = String(slug || "").replace(/^\/+|\/+$/g, "");
   if (!valor) return undefined;
-  return priceTable.find(
-    (item: PriceOffer) => item.id === valor || item.calcomSlug === valor || item.calendlySlug === valor,
-  );
+  return priceTable.find((item: PriceOffer) => item.id === valor || item.calcomSlug === valor);
 }
 
 function klaviyoKey() {

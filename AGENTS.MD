@@ -25,8 +25,10 @@ pnpm dev         # servidor de desenvolvimento (:: / 0.0.0.0:3000)
 pnpm build       # build de produção Next.js
 pnpm start       # serve o build de produção
 pnpm typecheck   # checagem de tipos (tsc --noEmit)
+pnpm test        # catálogo, Mercado Pago, Cal.com, newsletter, cookies — sem cobrança real
 pnpm run build:cf  # bundle OpenNext para Cloudflare
-pnpm run deploy    # publica o Worker reino-de-mulambo
+# publicar (não use `pnpm run deploy`: ele não passa --keep-vars)
+npx wrangler deploy --keep-vars --autoconfig false --name reino-de-mulambo
 ```
 
 ## Estrutura
@@ -80,12 +82,13 @@ public/               ← assets estáticos
 
 - Este repositório é a fonte do Worker `reino-de-mulambo` em `reinodemulambo.com`.
 - Fluxo: pagar no Mercado Pago (Pix/cartão) → depois agendar no Cal.com (`reinodemulambo`).
-- Baseline publicado: Worker `54211c14` (cookie consent + privacidade + SEO das seis consultas).
-- Deploy seguro: `pnpm run build:cf` e depois
+- Código morto Stripe/Calendly removido em 2026-11-03. Agenda = Cal.com. Pagamento = Mercado Pago.
+- Deploy seguro: `pnpm run typecheck && pnpm test && pnpm run build:cf` e depois
   `npx wrangler deploy --keep-vars --autoconfig false --name reino-de-mulambo`
   a partir **desta** pasta. Não publicar `reino-worker-39-s2` (grants/D1/Calendly).
 - Não adicione `d1_databases` nem `CALENDLY_API_TOKEN` neste Worker.
-- Preços (não alterar sem a Natalia): texto 60, áudio 80, ligação 150, vídeo 180, búzios 220, Maria Mulambo 400 (quinta).
+- Preços (não alterar sem a Natalia): texto 60, áudio 80, ligação 150, vídeo 180, búzios 220, Maria Mulambo 400 (quinta, 40 min).
+- Harness operacional: `~/BUSINESS/REINO-DE-MULAMBO/`.
 
 ## Contexto de negócio
 

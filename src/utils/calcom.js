@@ -20,9 +20,7 @@ export function linkCalcom(slug) {
 export function offerBySlugOrId(chave) {
   const valor = slugLimpo(chave);
   if (!valor) return undefined;
-  return priceTable.find(
-    (item) => item.id === valor || item.calcomSlug === valor || item.calendlySlug === valor,
-  );
+  return priceTable.find((item) => item.id === valor || item.calcomSlug === valor);
 }
 
 export function schedulePath(slugOuId) {

@@ -12,8 +12,6 @@ export const config = {
   whatsapp: "5522988455946", // formato internacional, só números
   whatsappDisplay: "(22) 98845-5946",
   email: "contato.maenatalia@gmail.com",
-  calendly: "https://calendly.com/contato-maenatalia/30min",
-  calendlyUsuario: "contato-maenatalia",
   calcomUsuario: "reinodemulambo",
   /** Checkout Pro do Mercado Pago. A chave fica em MERCADOPAGO_ACCESS_TOKEN. */
   paymentsLive: true,

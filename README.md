@@ -14,7 +14,7 @@ Este repositório é a fonte do Worker Cloudflare `reino-de-mulambo`. O que est�
 pnpm install
 pnpm dev          # http://localhost:3000
 pnpm typecheck
-pnpm test:consent
+pnpm test          # catálogo, Mercado Pago, Cal.com, newsletter, cookies — sem cobrança real
 ```
 
 Credenciais ficam em `.env.local` (veja `.env.example`). Não commite `.env*`.

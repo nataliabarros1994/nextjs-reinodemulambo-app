@@ -35,7 +35,7 @@ export function Services() {
         <div className="container-wide space-y-16">
           {services.map((s: (typeof services)[number]) => {
             const oferta = priceTable.find(
-              (item: { calendlySlug?: string }) => item.calendlySlug === s.calendlySlug,
+              (item: { calcomSlug?: string }) => item.calcomSlug === s.calcomSlug,
             );
             return (
             <Card key={s.id}>

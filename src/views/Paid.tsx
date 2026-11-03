@@ -8,18 +8,13 @@ import { Button } from "@/components/Button";
 import { CalComEmbed } from "@/components/CalComEmbed";
 import { Seo } from "@/components/Seo";
 import { linkCalcom } from "@/utils/calcom.js";
-import { hasPayment, markPaid, pathToPay, resolveServiceId } from "@/utils/payment.js";
+import { hasPayment, markPaid, pathToPay, paymentIdFromSearch, resolveServiceId } from "@/utils/payment.js";
 import { linkWhatsApp } from "@/utils/whatsapp.js";
 
 type UnlockState = "checking" | "pending" | "locked" | "open";
 
 function paymentQuery(searchParams: URLSearchParams) {
-  return (
-    searchParams.get("payment_id") ||
-    searchParams.get("collection_id") ||
-    searchParams.get("session_id") ||
-    ""
-  );
+  return paymentIdFromSearch(searchParams);
 }
 
 export function Paid() {

@@ -23,7 +23,8 @@
     "node_modules",
     "dist",
     "open-next.config.ts",
-    "src/lib/cookie-consent.test.ts",
+    "src/**/*.test.ts",
+    "test",
     "qa"
   ]
 }

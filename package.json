@@ -8,7 +8,8 @@
     "build": "next build",
     "start": "next start --hostname 0.0.0.0",
     "typecheck": "tsc --noEmit",
-    "test:consent": "node --experimental-strip-types --test src/lib/cookie-consent.test.ts",
+    "test": "node --experimental-strip-types --import ./test/register.mjs --test src/**/*.test.ts",
+    "test:consent": "node --experimental-strip-types --import ./test/register.mjs --test src/lib/cookie-consent.test.ts",
     "build:cf": "opennextjs-cloudflare build",
     "deploy": "opennextjs-cloudflare deploy",
     "preview:cf": "opennextjs-cloudflare preview"

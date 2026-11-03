@@ -24,11 +24,21 @@ export function pathToPay(servicoId) {
 }
 
 /** Agenda do Cal.com, depois do pagamento confirmado. */
-export function confirmationPath(servicoId, sessionId) {
+export function confirmationPath(servicoId, paymentId) {
   const id = resolveServiceId(servicoId);
   const base = id ? `/agendar?servico=${encodeURIComponent(id)}` : "/agendar";
-  if (!sessionId) return base;
-  return `${base}&session_id=${encodeURIComponent(sessionId)}`;
+  if (!paymentId) return base;
+  return `${base}&payment_id=${encodeURIComponent(paymentId)}`;
+}
+
+/** Mercado Pago devolve payment_id e, no auto_return, também collection_id. */
+export function paymentIdFromSearch(search) {
+  if (!search) return "";
+  const read = (key) => {
+    if (typeof search.get === "function") return search.get(key);
+    return search[key];
+  };
+  return String(read("payment_id") || read("collection_id") || "").trim();
 }
 
 export function markPaid(servicoId, sessionId) {

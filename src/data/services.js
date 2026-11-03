@@ -13,7 +13,7 @@ export const consultationHours = ["Manhã", "Tarde", "Noite"];
 export const services = [
   {
     id: "buzios",
-    calendlySlug: "30min-buzios",
+    calcomSlug: "30min-buzios",
     nome: "Jogo de Búzios",
     resumo: "Oráculo de matriz africana para escutar caminhos, fundamentos e o que pede cuidado agora.",
     icone: "shell",
@@ -31,7 +31,7 @@ export const services = [
   },
   {
     id: "taro",
-    calendlySlug: "30min-taro-texto",
+    calcomSlug: "30min-taro-texto",
     nome: "Leitura de Tarô",
     resumo: "Cartas como linguagem simbólica para clareza, escolhas e o momento que você está vivendo.",
     icone: "cards",
@@ -90,10 +90,7 @@ export const priceTable = [
     amountCents: 6000,
     descricao: "Tiragem focada em dúvidas pontuais com respostas objetivas gravadas por texto.",
     disponibilidade: "Segunda, terça, quarta e sexta",
-    calendlySlug: "30min-taro-texto",
     calcomSlug: "30min-taro-texto",
-    stripePaymentUrl: "https://buy.stripe.com/9B614nfRF9Xg55K2Ap4AU04",
-    stripePaymentLinkId: "plink_1UPNABHS1c6QGodfg14Ocsx1",
     destaque: false,
   },
   {
@@ -105,10 +102,7 @@ export const priceTable = [
     amountCents: 8000,
     descricao: "Explicação detalhada em áudios para você ouvir e guardar quando quiser.",
     disponibilidade: "Segunda, terça, quarta e sexta",
-    calendlySlug: "30min-taro-audio",
     calcomSlug: "30min-taro-audio",
-    stripePaymentUrl: "",
-    stripePaymentLinkId: "plink_1UPNA9HS1c6QGodfO0jucock",
     destaque: false,
   },
   {
@@ -120,10 +114,7 @@ export const priceTable = [
     amountCents: 15000,
     descricao: "Atendimento por chamada de voz ao vivo para uma conversa fluida e orientativa.",
     disponibilidade: "Segunda, terça, quarta e sexta",
-    calendlySlug: "30min-ligacao",
     calcomSlug: "30min-ligacao",
-    stripePaymentUrl: "",
-    stripePaymentLinkId: "plink_1UPNA9HS1c6QGodfitAMIRIx",
     destaque: false,
   },
   {
@@ -135,10 +126,7 @@ export const priceTable = [
     amountCents: 18000,
     descricao: "Chamada de vídeo ao vivo para acompanhar a tiragem das cartas em tempo real.",
     disponibilidade: "Segunda, terça, quarta e sexta",
-    calendlySlug: "30min-taro-video",
     calcomSlug: "30min-taro-video",
-    stripePaymentUrl: "",
-    stripePaymentLinkId: "plink_1UPNABHS1c6QGodfYyEpDyOW",
     destaque: false,
   },
   {
@@ -150,10 +138,7 @@ export const priceTable = [
     amountCents: 22000,
     descricao: "Orientação oracular profunda através dos Odús e forças dos Orixás.",
     disponibilidade: "Segunda, terça, quarta e sexta",
-    calendlySlug: "30min-buzios",
     calcomSlug: "30min-buzios",
-    stripePaymentUrl: "",
-    stripePaymentLinkId: "plink_1UPNA9HS1c6QGodfH22VBFtb",
     destaque: false,
   },
   {
@@ -165,10 +150,7 @@ export const priceTable = [
     amountCents: 40000,
     descricao: "Atendimento espiritual reservado e direcionamento direto com a Entidade. Somente às quintas-feiras.",
     disponibilidade: "Somente quintas-feiras",
-    calendlySlug: "60min-maria-mulambo",
     calcomSlug: "40min-maria-mulambo",
-    stripePaymentUrl: "https://buy.stripe.com/bJeeVd9th7P80PucaZ4AU00",
-    stripePaymentLinkId: "plink_1UPNA9HS1c6QGodfeIbnsJkz",
     destaque: true,
     selo: "Consulta com a Entidade",
   },

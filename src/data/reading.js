@@ -132,7 +132,7 @@ export const reading = {
     ],
   },
   fecho: {
-    titulo: "Quando você estiver pronta, estou aqui.",
+    titulo: "Quando você estiver pronto ou pronta, estou aqui.",
     texto: "A conversa começa no WhatsApp. Se quiser ver como falamos de valores, a tabela está na página de serviços.",
   },
   seo: {

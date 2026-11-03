@@ -74,7 +74,7 @@ export function CalendlyEmbed({ url }: { url: string }) {
           ref={ref}
           className="calendly-inline-widget"
           data-url={url}
-          style={{ minWidth: 320, height: "100%" }}
+          style={{ height: "100%" }}
         />
       </div>
       <p className="mt-4 text-center text-sm text-branco-lua/55">

@@ -1,5 +1,5 @@
 "use client";
-const panoBuzios = "/pano-buzios.jpg";
+const panoBuzios = "/reino-buzios.jpg";
 import { useEffect, useState } from "react";
 
 import { reflectionMessages } from "@/data/messages.js";
@@ -47,12 +47,9 @@ export function CowrieCast() {
             <img
               className="buzios-cloth-photo"
               src={panoBuzios}
-              alt="Pano de leitura de búzios"
-              width={800}
-              height={800}
-              onError={(e) => {
-                e.currentTarget.src = "/pano-buzios.jpg";
-              }}
+              alt="Reino de Mulambo — jogue os búzios"
+              width={1254}
+              height={1254}
             />
             <div className="buzios-cloth-overlay" aria-hidden="true" />
             <div className="buzios-ring" aria-hidden="true" />
@@ -74,7 +71,7 @@ export function CowrieCast() {
                   </Button>
                 ) : (
                   <Button href={pathToPay("buzios-tradicional")}>
-                    Agendar consulta
+                    Pagar e agendar
                   </Button>
                 )}
               </div>

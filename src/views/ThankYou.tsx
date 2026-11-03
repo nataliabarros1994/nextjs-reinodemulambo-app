@@ -10,10 +10,10 @@ export function ThankYou() {
       <section className="flex min-h-[70vh] items-center py-24">
         <div className="container-wide max-w-2xl text-center">
           <p className="eyebrow">pedido enviado</p>
-          <h1 className="font-display mt-4 text-5xl">Obrigada. Sua mensagem já está a caminho.</h1>
+          <h1 className="font-display mt-4 text-[2.15rem] leading-tight sm:text-5xl">Obrigada. Sua mensagem já está a caminho.</h1>
           <p className="mt-6 leading-7 text-branco-lua/70">
             Nas próximas horas, olho o WhatsApp e retorno com os horários possíveis. Se a janela não abriu, volte à página de
-            contato e toque em enviar outra vez. Enquanto isso, se quiser, acompanhe os recados no Instagram.
+            contato e toque em enviar outra vez. Enquanto isso, se quiser, acompanhe os recados nas redes.
           </p>
           <div className="mt-8 flex justify-center gap-3">
             <Button href={config.instagram} external variant="roxo">

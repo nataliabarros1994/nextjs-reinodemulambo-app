@@ -19,6 +19,14 @@ export function Navbar() {
     { href: "/blog", label: "Blog" },
     { href: "/contato", label: "Contato" },
   ];
+  const mobileNav = [
+    { href: "/", label: "Início" },
+    { href: "/sobre", label: "Sobre" },
+    { href: "/servicos", label: "Serviços" },
+    { href: "/leitura", label: "A Leitura" },
+    { href: "/blog", label: "Blog" },
+    { href: "/contato", label: "Contato" },
+  ];
 
   useEffect(() => {
     setOpen(false);
@@ -58,11 +66,12 @@ export function Navbar() {
               {item.label}
             </Link>
           ))}
-          <Button href="/servicos" className="nav-cta !py-2.5 !px-4 text-xs">
-            Agendar consulta
+          <Button href="/servicos" className="nav-cta">
+            Agendar<span className="nav-cta-full"> consulta</span>
           </Button>
           <button
             className="nav-toggle"
+            type="button"
             onClick={() => setOpen((v) => !v)}
             aria-label={open ? "Fechar menu" : "Abrir menu"}
             aria-expanded={open}
@@ -73,7 +82,7 @@ export function Navbar() {
       </div>
       {open ? (
         <nav className="mobile-nav" aria-label="Navegação móvel">
-          {nav.map((item) => (
+          {mobileNav.map((item) => (
             <Link key={item.href} href={item.href} className="font-display text-2xl">
               {item.label}
             </Link>

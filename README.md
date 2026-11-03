@@ -1,68 +1,39 @@
-# Site Reino de Mulambo
+# Reino de Mulambo
 
-Site profissional de Jogo de Búzios, Tarô e orientação espiritual. Tudo o que você precisa editar no dia a dia está na pasta `src/data/`.
+Site Next.js 15 do [reinodemulambo.com](https://reinodemulambo.com): jogo de búzios e tarô online.
+
+**Pagamento:** Mercado Pago Checkout Pro (Pix ou cartão), primeiro.  
+**Agenda:** Cal.com (`reinodemulambo`), só depois do pagamento.  
+**Não usamos Calendly.**
+
+Este repositório é a fonte do Worker Cloudflare `reino-de-mulambo`. O que está no `main` deve poder ser publicado sem surpresa.
 
 ## Como rodar
 
 ```bash
-pnpm --filter @workspace/mae-natalia run dev
+pnpm install
+pnpm dev          # http://localhost:3000
+pnpm typecheck
+pnpm test:consent
 ```
 
-O projeto usa React + Vite + Tailwind. Não há backend: os formulários abrem o WhatsApp.
+Credenciais ficam em `.env.local` (veja `.env.example`). Não commite `.env*`.
 
-## Trocar telefone e redes
+## O que editar no dia a dia
 
-Abra `src/data/config.js`:
-
-- `whatsapp` — só números, com DDI. Ex.: `5522981507669`
-- `whatsappDisplay` — como aparece na tela
-- `email`, `instagram`, `cidade` (texto do atendimento online), `horarios`
-- `MOSTRAR_PRECOS` — `false` esconde qualquer valor das **leituras**
-- `TRABALHOS_ATIVOS` — `false` esconde o menu e redireciona `/trabalhos` para a Home. Mude para `true` quando quiser publicar a página.
-
-## Ativar a página de Trabalhos Espirituais
-
-1. Em `src/data/config.js`, mude `TRABALHOS_ATIVOS` para `true`.
-2. Revise os textos em `src/data/trabalhos.js`.
-3. **Nenhum valor deve ser colocado nessa página.** A frase de preço permanece: valores só após a consulta.
-
-## Mostrar preços das leituras (búzios e tarô)
-
-1. Preencha o array `precos` em `src/data/servicos.js`.
-2. Mude `MOSTRAR_PRECOS` para `true` em `src/data/config.js`.
-3. Trabalhos espirituais continuam **sempre** sem valor divulgado.
-
-## Trocar textos
-
-| O que mudar | Arquivo |
+| O quê | Onde |
 |---|---|
-| Contato, flags, SEO | `src/data/config.js` |
-| Serviços e (opcional) preços | `src/data/servicos.js` |
-| A Leitura | `src/data/leitura.js` |
-| Depoimentos | `src/data/depoimentos.js` |
-| FAQ | `src/data/faq.js` |
-| Sobre, ética, preparação | `src/data/sobre.js` |
-| Trabalhos espirituais | `src/data/trabalhos.js` |
-| Blog | `src/data/blog.js` |
-| Glossário | `src/data/glossario.js` |
-| Vagas da semana | `src/data/agenda.js` |
-| Tarô do Dia | `src/data/tarot.js` |
-| Mensagens da jogada de búzios | `src/data/mensagens.js` |
+| Telefone, redes, horários, flags | `src/data/config.js` |
+| Serviços e preços | `src/data/services.js` |
+| FAQ, sobre, leitura, blog | `src/data/` e `src/content/blog/` |
 
-## Trocar a foto
+Preços públicos (BRL): texto 60, áudio 80, ligação 150, vídeo 180, búzios 220, Maria Mulambo 400 (só quinta). Não alterar sem a Natalia.
 
-Substitua `attached_assets/natalia-retrato.png` pela foto real, mantendo o mesmo nome, ou altere o import em `src/pages/Home.tsx` e `src/pages/Sobre.tsx`.
+## Publicar
 
-## WhatsApp inteligente
+```bash
+pnpm run build:cf
+npx wrangler deploy --keep-vars --autoconfig false --name reino-de-mulambo
+```
 
-A função `abrirWhatsApp(servico)` em `src/utils/whatsapp.js` monta uma mensagem diferente conforme a origem (búzios, tarô, leitura, presente, quiz…).
-
-## Checklist antes de publicar
-
-- [ ] Número de WhatsApp real em `config.js`
-- [ ] Fotos reais no lugar do retrato atual, se quiser atualizar
-- [ ] Textos do “Sobre” revisados com a sua voz
-- [ ] Nenhum valor visível (a menos que `MOSTRAR_PRECOS` esteja `true` e só nas leituras)
-- [ ] Testado no celular
-- [ ] Domínio apontando para o site (ex.: `reinodemulambo.com.br`)
-- [ ] Atualizar URLs de `public/sitemap.xml` e `public/robots.txt` para o domínio final
+`--keep-vars` preserva secrets já no Worker (`MERCADOPAGO_ACCESS_TOKEN`, `CALCOM_WEBHOOK_SECRET`, Klaviyo, Resend). Não publique a pasta `reino-worker-39-s2`.

@@ -22,7 +22,7 @@ export function Works() {
       <section className="page-hero">
         <div className="container-wide">
           <span className="eyebrow">trabalhos espirituais</span>
-          <h1 className="font-display mt-4 max-w-3xl text-5xl">Cuidado que começa antes do trabalho.</h1>
+          <h1 className="font-display mt-4 max-w-3xl text-[2.15rem] leading-tight sm:text-5xl">Cuidado que começa antes do trabalho.</h1>
           <p className="mt-6 max-w-2xl leading-7 text-branco-lua/75">{works.intro}</p>
         </div>
       </section>

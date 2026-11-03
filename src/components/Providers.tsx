@@ -12,7 +12,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { MetaPixel } from "@/components/MetaPixel";
 import { Analytics } from "@/components/Analytics";
-import { ExitIntentPopup } from "@/components/ExitIntentPopup";
+import { CookieConsent } from "@/components/CookieConsent";
 
 const queryClient = new QueryClient();
 
@@ -23,13 +23,13 @@ export function Providers({ children }: { children: ReactNode }) {
         <TooltipProvider>
           <MetaPixel />
           <Analytics />
+          <CookieConsent />
           <Preloader />
           <StarCursor />
           <ErrorBoundary>
             <ScrollToTop />
             {children}
           </ErrorBoundary>
-          <ExitIntentPopup />
           <AmbientSound />
           <Toaster />
         </TooltipProvider>

@@ -13,12 +13,13 @@ const mensagens = {
   trabalhos: "Olá, Reino de Mulambo! Gostaria de conversar sobre avaliação para um trabalho espiritual. Entendo que tudo começa pela consulta.",
   servicos: "Olá, Reino de Mulambo! Vi a página de serviços e gostaria de agendar.",
   contato: "Olá, Reino de Mulambo! Estou na página de contato e gostaria de agendar.",
+  pagamento: "Olá, Reino de Mulambo! Vim pelo site para pagar e agendar. Já estou com o Pix na tela.",
   home: "Olá, Reino de Mulambo! Vim pela página inicial do site e gostaria de agendar uma consulta.",
   blog: "Olá, Reino de Mulambo! Li um artigo no site e gostaria de agendar uma consulta.",
 };
 
 export function mensagemWhatsApp(servico = "geral", extra = "") {
-  const base = mensagens[servico] || messages.geral;
+  const base = mensagens[servico] || mensagens.geral;
   return extra ? `${base}\n\n${extra}` : base;
 }
 

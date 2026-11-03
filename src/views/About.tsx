@@ -1,6 +1,5 @@
 "use client";
 
-const nataliaPortrait = "/natalia-retrato.jpg";
 import { HeartHandshake, Lock, Scale, Sparkles } from "lucide-react";
 import { config } from "@/data/config.js";
 import { about } from "@/data/about.js";
@@ -8,7 +7,7 @@ import { Button } from "@/components/Button";
 import { Card } from "@/components/Card";
 import { Seo } from "@/components/Seo";
 
-
+const sobrePortrait = "/reino-sobre.jpg";
 const icons = [Lock, Sparkles, Scale, HeartHandshake];
 
 export function About() {
@@ -21,23 +20,22 @@ export function About() {
       <section className="page-hero">
         <div className="container-wide">
           <span className="eyebrow">a pessoa por trás da escuta</span>
-          <h1 className="font-display mt-4 max-w-3xl text-5xl leading-tight md:text-7xl">
+          <h1 className="font-display mt-4 max-w-3xl text-[2.15rem] leading-tight sm:text-5xl md:text-7xl">
             Presença antes de qualquer resposta.
           </h1>
           <p className="mt-6 max-w-2xl text-lg leading-8 text-dourado/90">{about.apresentacao}</p>
         </div>
       </section>
       <section className="py-24">
-        <div className="container-wide grid items-center gap-6 md:grid-cols-[auto_minmax(0,1fr)] md:gap-10">
-          <div className="portrait-circle portrait-circle--sm mx-auto md:mx-0">
+        <div className="container-wide grid items-center gap-8 md:grid-cols-[auto_minmax(0,1fr)] md:gap-12">
+          <figure className="portrait-circle portrait-circle--sobre mx-auto md:mx-0">
             <img
-              src={nataliaPortrait}
-              alt="Reino de Mulambo"
-              onError={(e) => {
-                e.currentTarget.src = "/natalia-retrato.jpg";
-              }}
+              src={sobrePortrait}
+              alt="Reino de Mulambo — tarô, búzios e orientação espiritual"
+              width={1254}
+              height={1254}
             />
-          </div>
+          </figure>
           <div className="space-y-5 text-branco-lua/75 leading-8">
             {about.historia.map((p: string) => (
               <p key={p.slice(0, 24)}>{p}</p>

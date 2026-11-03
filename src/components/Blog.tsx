@@ -90,8 +90,8 @@ export function BlogPost() {
     dateModified: artigo.dataIso,
     inLanguage: "pt-BR",
     articleSection: artigo.categoria,
-    author: { "@type": "Person", name: config.nome, sameAs: [config.instagram] },
-    publisher: { "@type": "Person", name: config.nome, sameAs: [config.instagram] },
+    author: { "@type": "Person", name: config.nome, sameAs: [config.instagram, config.facebookPage, config.facebookProfile, config.tiktok] },
+    publisher: { "@type": "Person", name: config.nome, sameAs: [config.instagram, config.facebookPage, config.facebookProfile, config.tiktok] },
   };
 
   return (

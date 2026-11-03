@@ -77,8 +77,8 @@ export const services = [
 ];
 
 /**
- * Pagamento (Stripe) acontece ANTES da agenda (Calendly).
- * Crie no Calendly um evento com o mesmo slug de `calendlySlug`.
+ * Pagamento (Mercado Pago) acontece ANTES da agenda (Cal.com).
+ * `calcomSlug` precisa bater com o evento público em cal.com/reinodemulambo.
  */
 export const priceTable = [
   {
@@ -87,11 +87,13 @@ export const priceTable = [
     formato: "Texto",
     duracao: "30 minutos",
     valor: "R$ 60,00",
+    amountCents: 6000,
     descricao: "Tiragem focada em dúvidas pontuais com respostas objetivas gravadas por texto.",
     disponibilidade: "Segunda, terça, quarta e sexta",
     calendlySlug: "30min-taro-texto",
-    stripePaymentUrl: "https://buy.stripe.com/test_8x25kF5Xse1pfn48PXfYY00",
-    stripePaymentLinkId: "plink_1UG0OAQVZOoqzm8wLLRfe5R4",
+    calcomSlug: "30min-taro-texto",
+    stripePaymentUrl: "https://buy.stripe.com/9B614nfRF9Xg55K2Ap4AU04",
+    stripePaymentLinkId: "plink_1UPNABHS1c6QGodfg14Ocsx1",
     destaque: false,
   },
   {
@@ -100,11 +102,13 @@ export const priceTable = [
     formato: "Áudio",
     duracao: "30 minutos",
     valor: "R$ 80,00",
+    amountCents: 8000,
     descricao: "Explicação detalhada em áudios para você ouvir e guardar quando quiser.",
     disponibilidade: "Segunda, terça, quarta e sexta",
     calendlySlug: "30min-taro-audio",
-    stripePaymentUrl: "https://buy.stripe.com/test_8x29AV0D86yX1wefelfYY01",
-    stripePaymentLinkId: "plink_1UG0OBQVZOoqzm8wDHbyJs8N",
+    calcomSlug: "30min-taro-audio",
+    stripePaymentUrl: "",
+    stripePaymentLinkId: "plink_1UPNA9HS1c6QGodfO0jucock",
     destaque: false,
   },
   {
@@ -113,11 +117,13 @@ export const priceTable = [
     formato: "Voz",
     duracao: "30 minutos",
     valor: "R$ 150,00",
+    amountCents: 15000,
     descricao: "Atendimento por chamada de voz ao vivo para uma conversa fluida e orientativa.",
     disponibilidade: "Segunda, terça, quarta e sexta",
     calendlySlug: "30min-ligacao",
-    stripePaymentUrl: "https://buy.stripe.com/test_eVq8wRadI3mL2Ai0jrfYY02",
-    stripePaymentLinkId: "plink_1UG0ODQVZOoqzm8w57z7sdLw",
+    calcomSlug: "30min-ligacao",
+    stripePaymentUrl: "",
+    stripePaymentLinkId: "plink_1UPNA9HS1c6QGodfitAMIRIx",
     destaque: false,
   },
   {
@@ -126,11 +132,13 @@ export const priceTable = [
     formato: "Vídeo",
     duracao: "30 minutos",
     valor: "R$ 180,00",
+    amountCents: 18000,
     descricao: "Chamada de vídeo ao vivo para acompanhar a tiragem das cartas em tempo real.",
     disponibilidade: "Segunda, terça, quarta e sexta",
     calendlySlug: "30min-taro-video",
-    stripePaymentUrl: "https://buy.stripe.com/test_00w9AV4Tof5ta2K2rzfYY03",
-    stripePaymentLinkId: "plink_1UG0OEQVZOoqzm8wPVwlGFMa",
+    calcomSlug: "30min-taro-video",
+    stripePaymentUrl: "",
+    stripePaymentLinkId: "plink_1UPNABHS1c6QGodfYyEpDyOW",
     destaque: false,
   },
   {
@@ -139,30 +147,37 @@ export const priceTable = [
     formato: "Oráculo",
     duracao: "30 minutos",
     valor: "R$ 220,00",
+    amountCents: 22000,
     descricao: "Orientação oracular profunda através dos Odús e forças dos Orixás.",
     disponibilidade: "Segunda, terça, quarta e sexta",
     calendlySlug: "30min-buzios",
-    stripePaymentUrl: "https://buy.stripe.com/test_14A8wR0D85uTa2K0jrfYY04",
-    stripePaymentLinkId: "plink_1UG0OGQVZOoqzm8w9T3fjUf9",
+    calcomSlug: "30min-buzios",
+    stripePaymentUrl: "",
+    stripePaymentLinkId: "plink_1UPNA9HS1c6QGodfH22VBFtb",
     destaque: false,
   },
   {
     id: "maria-mulambo",
     nome: "Consulta Direta com Maria Mulambo",
     formato: "Entidade",
-    duracao: "45 min a 1 hora",
+    duracao: "40 minutos",
     valor: "R$ 400,00",
+    amountCents: 40000,
     descricao: "Atendimento espiritual reservado e direcionamento direto com a Entidade. Somente às quintas-feiras.",
     disponibilidade: "Somente quintas-feiras",
     calendlySlug: "60min-maria-mulambo",
-    stripePaymentUrl: "https://buy.stripe.com/test_5kQbJ3gC68H52AigipfYY05",
-    stripePaymentLinkId: "plink_1UG0OIQVZOoqzm8wfwD84xgd",
+    calcomSlug: "40min-maria-mulambo",
+    stripePaymentUrl: "https://buy.stripe.com/bJeeVd9th7P80PucaZ4AU00",
+    stripePaymentLinkId: "plink_1UPNA9HS1c6QGodfeIbnsJkz",
     destaque: true,
     selo: "Consulta com a Entidade",
   },
 ];
 
-export const precos = priceTable.map((item) => ({
+/** Ofertas visíveis no site. Itens com `interno: true` ficam de fora. */
+export const catalogPriceTable = priceTable.filter((item) => !item.interno);
+
+export const precos = catalogPriceTable.map((item) => ({
   servicoId: item.id,
   formato: item.formato,
   valor: item.valor,

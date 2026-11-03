@@ -20,3 +20,13 @@ qa/
 # misc
 .DS_Store
 *.log
+
+# local research / captures (not the production site)
+avail-list.yml
+link-editor.yml
+stripe-profile.yml
+serp-*.yml
+serp-*.txt
+gsc-*.png
+google-ads-*.png
+calcom-links.png

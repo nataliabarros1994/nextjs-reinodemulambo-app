@@ -3,8 +3,8 @@ import { Suspense } from "react";
 import { Pay } from "@/views/Pay";
 
 export const metadata: Metadata = {
-  title: "Agendar — Reino de Mulambo",
-  description: "Escolha o dia e o horário. O pagamento é feito na confirmação, via Stripe no Calendly.",
+  title: "Pagar — Reino de Mulambo",
+  description: "Pague a consulta e, em seguida, escolha o horário.",
 };
 
 export default function Page() {

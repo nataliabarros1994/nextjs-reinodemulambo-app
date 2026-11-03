@@ -4,7 +4,7 @@ import { Paid } from "@/views/Paid";
 
 export const metadata: Metadata = {
   title: "Agendar — Reino de Mulambo",
-  description: "Escolha o dia e o horário. O pagamento é feito na confirmação, via Stripe no Calendly.",
+  description: "Pagamento confirmado. Escolha o dia e o horário.",
 };
 
 export default function Page() {

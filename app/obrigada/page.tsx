@@ -5,6 +5,7 @@ export const metadata: Metadata = {
   title: "Obrigada — Reino de Mulambo",
   description:
     "Recebemos seu pedido. Nas próximas horas, a conversa continua no WhatsApp.",
+  robots: { index: false, follow: true },
 };
 
 export default function Page() {

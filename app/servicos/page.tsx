@@ -1,10 +1,16 @@
 import type { Metadata } from "next";
 import { Services } from "@/views/Services";
+import { pageOpenGraph } from "@/lib/open-graph";
+
+const title = "Serviços — Jogo de Búzios e Tarô Online | Reino de Mulambo";
+const description =
+  "Consulta de tarot online, jogo de búzios e consulta com entidade. Valores, taróloga no WhatsApp, texto, áudio, ligação e vídeo. Pague e depois escolha o horário.";
 
 export const metadata: Metadata = {
-  title: "Serviços — Jogo de Búzios e Tarô Online | Reino de Mulambo",
-  description:
-    "Valores e formatos de Jogo de Búzios e Tarô online com o Reino de Mulambo. Texto, áudio, vídeo, ligação e consulta espiritual.",
+  title,
+  description,
+  alternates: { canonical: "/servicos" },
+  openGraph: pageOpenGraph("/servicos", { title, description }),
 };
 
 export default function Page() {

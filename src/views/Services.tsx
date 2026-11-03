@@ -4,6 +4,7 @@ import { Button } from "@/components/Button";
 import { Card } from "@/components/Card";
 import { Seo } from "@/components/Seo";
 import { PriceTable } from "@/components/PriceTable";
+import { servicesPageJsonLd } from "@/lib/offers-schema";
 import { pathToPay } from "@/utils/payment.js";
 
 export function Services() {
@@ -12,17 +13,18 @@ export function Services() {
       <Seo
         title="Serviços — Jogo de Búzios e Tarô Online | Reino de Mulambo"
         description="Valores e formatos de Jogo de Búzios e Tarô online com o Reino de Mulambo. Texto, áudio, vídeo, ligação e consulta espiritual."
+        schema={servicesPageJsonLd()}
       />
       <section className="page-hero">
         <div className="container-wide">
           <span className="eyebrow">serviços</span>
-          <h1 className="font-display mt-4 max-w-3xl text-5xl md:text-7xl">Cada pergunta pede uma linguagem.</h1>
+          <h1 className="font-display mt-4 max-w-3xl text-[2.15rem] leading-tight sm:text-5xl md:text-6xl">Cada pergunta pede uma linguagem.</h1>
         </div>
       </section>
       <section className="py-16">
         <div className="container-wide">
           <p className="max-w-2xl leading-7 text-branco-lua/75">
-            Escolha o formato e o oráculo. O horário e o pagamento acontecem no Calendly, via Stripe. Leituras e búzios: segunda, terça, quarta e sexta. Quintas-feiras: somente consulta com a Entidade. O WhatsApp fica só para dúvidas.
+            Escolha o formato e o oráculo. O pagamento no Mercado Pago vem primeiro; o horário só abre depois. Leituras e búzios: segunda, terça, quarta e sexta. Quintas-feiras: somente consulta com a Entidade. O WhatsApp fica para dúvidas.
           </p>
           <div className="mt-10">
             <PriceTable />
@@ -59,7 +61,7 @@ export function Services() {
               <p className="mt-5 text-sm text-dourado">{s.duracao}</p>
               <p className="text-sm text-branco-lua/55">{s.formatos.join(" · ")}</p>
               <Button className="mt-6" href={oferta ? pathToPay(oferta.id) : "/contato"}>
-                Agendar {s.nome}
+                Pagar e agendar {s.nome}
               </Button>
             </Card>
             );

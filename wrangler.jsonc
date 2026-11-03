@@ -8,6 +8,9 @@
     "directory": ".open-next/assets",
     "binding": "ASSETS"
   },
+  "vars": {
+    "HOST_NOTIFY_EMAIL": "contato.maenatalia@gmail.com"
+  },
   "routes": [
     { "pattern": "reinodemulambo.com", "custom_domain": true },
     { "pattern": "www.reinodemulambo.com", "custom_domain": true }

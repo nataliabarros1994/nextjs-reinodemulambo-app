@@ -40,7 +40,7 @@ src/
   views/              ← componentes "de página" (client components, "use client")
   components/         ← componentes de UI compartilhados
   data/               ← conteúdo e configuração (textos ficam em PT)
-  utils/              ← utilitários (whatsapp, payment, calendly, analytics, klaviyo)
+  utils/              ← utilitários (whatsapp, payment, calcom, analytics, klaviyo)
   lib/                ← artigos do blog (articles.ts + articles.meta.ts)
   content/blog/       ← arquivos .mdx dos artigos
   hooks/              ← hooks React
@@ -63,8 +63,9 @@ public/               ← assets estáticos
 5. Artigos novos: crie `src/content/blog/<slug>.mdx` com frontmatter e registre
    também em `src/lib/articles.meta.ts` (usado por metadata/sitemap no servidor).
 6. Site single-language (pt-BR). Não adicionar i18n sem combinado com o dono.
-7. Integrações externas (Calendly, Stripe, Meta Pixel, GA4) vivem em `src/data/config.js`
-   e em componentes específicos (`MetaPixel`, `Analytics`, `CalendlyEmbed`).
+7. Integrações externas (Cal.com, Mercado Pago, Meta Pixel, GA4) vivem em
+   `src/data/config.js` e em componentes específicos (`CalComEmbed`, `MetaPixel`,
+   `Analytics`). **Agenda = Cal.com. Pagamento = Mercado Pago. Não usar Calendly.**
 
 ## Não faça sem checar
 
@@ -75,10 +76,24 @@ public/               ← assets estáticos
 - Não commite segredos. Credenciais reais ficam fora do repo (ver harness em
   `~/BUSINESS/REINO-DE-MULAMBO/credentials`).
 
+## Produção (fonte da verdade)
+
+- Este repositório é a fonte do Worker `reino-de-mulambo` em `reinodemulambo.com`.
+- Fluxo: pagar no Mercado Pago (Pix/cartão) → depois agendar no Cal.com (`reinodemulambo`).
+- Baseline publicado: Worker `54211c14` (cookie consent + privacidade + SEO das seis consultas).
+- Deploy seguro: `pnpm run build:cf` e depois
+  `npx wrangler deploy --keep-vars --autoconfig false --name reino-de-mulambo`
+  a partir **desta** pasta. Não publicar `reino-worker-39-s2` (grants/D1/Calendly).
+- Não adicione `d1_databases` nem `CALENDLY_API_TOKEN` neste Worker.
+- Preços (não alterar sem a Natalia): texto 60, áudio 80, ligação 150, vídeo 180, búzios 220, Maria Mulambo 400 (quinta).
+
 ## Contexto de negócio
 
-- Marca atual: **Reino de Mulambo** (antigo "Mãe Natália" — handles de
-  Calendly/e-mail antigos podem permanecer por operarem as contas ativas).
-- WhatsApp: (22) 98150-7669
+- Marca atual: **Reino de Mulambo** (antigo "Mãe Natália" — e-mail
+  `contato.maenatalia@gmail.com` opera as contas).
+- WhatsApp: (22) 98845-5946
 - E-mail: contato.maenatalia@gmail.com
-- Instagram: @mae.nataliaa
+- Instagram: @reino_de.mulambo (https://www.instagram.com/reino_de.mulambo/)
+- Facebook página: @Reino.de.Mulambo (https://www.facebook.com/profile.php?id=61595012546513)
+- Facebook perfil: Reino de Mulambo (https://www.facebook.com/profile.php?id=61595037025273)
+- TikTok: @reino.de.mulambo8 (https://www.tiktok.com/@reino.de.mulambo8)

@@ -33,7 +33,10 @@ export function BookingQuiz() {
             ? "30min-taro-video"
             : "30min-taro-texto"
         : "";
-  const ofertaQuiz = priceTable.find((t: { calendlySlug: string }) => t.calendlySlug === slugQuiz);
+  const ofertaQuiz = priceTable.find(
+    (t: { calendlySlug?: string; calcomSlug?: string }) =>
+      t.calcomSlug === slugQuiz || t.calendlySlug === slugQuiz,
+  );
   const hrefQuiz = ofertaQuiz ? pathToPay(ofertaQuiz.id) : "/contato";
 
   return (
@@ -60,7 +63,7 @@ export function BookingQuiz() {
                   {themes.map((t) => (
                     <button
                       key={t.id}
-                      className="rounded-xl border border-dourado/20 px-4 py-3 text-left hover:border-roxo-claro"
+                      className="min-h-11 rounded-xl border border-dourado/20 px-4 py-3 text-left hover:border-roxo-claro"
                       onClick={() => {
                         setTheme(t.id);
                         setStep(2);
@@ -117,7 +120,7 @@ export function BookingQuiz() {
                   Formato {modo}, preferência de {periodo}.
                 </p>
                 <Button className="mt-6" href={hrefQuiz}>
-                  Agendar {servico.nome}
+                  Pagar e agendar {servico.nome}
                 </Button>
               </motion.div>
             )}

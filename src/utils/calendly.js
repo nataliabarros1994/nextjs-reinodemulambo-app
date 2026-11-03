@@ -23,7 +23,9 @@ export function linkCalendly(slug) {
 export function offerBySlugOrId(chave) {
   const valor = slugLimpo(chave);
   if (!valor) return undefined;
-  return priceTable.find((item) => item.id === valor || item.calendlySlug === valor);
+  return priceTable.find(
+    (item) => item.id === valor || item.calendlySlug === valor || item.calcomSlug === valor,
+  );
 }
 
 /** Botões de agendar abrem o Calendly do serviço. */

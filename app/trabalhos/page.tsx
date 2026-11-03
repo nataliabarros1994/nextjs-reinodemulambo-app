@@ -5,6 +5,7 @@ export const metadata: Metadata = {
   title: "Trabalhos espirituais — Reino de Mulambo",
   description:
     "Limpeza, abertura de caminhos, harmonização e proteção. Cada caso é único. Valores somente após a consulta.",
+  robots: { index: false, follow: true },
 };
 
 export default function Page() {

@@ -1,5 +1,5 @@
 "use client";
-const nataliaPortrait = "/natalia-retrato.jpg";
+const nataliaPortrait = "/reino-sobre.jpg";
 import { ArrowRight, HeartHandshake, Lock, Scale, Sparkles } from "lucide-react";
 
 import { faq } from "@/data/faq.js";
@@ -34,7 +34,7 @@ export function Home() {
         <div className="container-wide hero-content">
           <p className="eyebrow">um espaço de escuta</p>
           <h1 className="text-glow text-glow-pulse">Reino de Mulambo</h1>
-          <p className="hero-sub">Jogo de Búzios • Tarô • Orientação Espiritual</p>
+          <p className="hero-sub">Jogo de Búzios e Tarô online · Consulta espiritual para todo o Brasil</p>
           <p className="hero-intro">
             Seja bem-vinda. Aqui o oráculo não apressa o seu caminho — ilumina o próximo passo, com respeito à tradição,
             sigilo e presença.
@@ -55,15 +55,12 @@ export function Home() {
       <Reveal>
         <section className="py-24">
           <div className="container-wide grid items-center gap-12 md:grid-cols-[auto_1fr]">
-            <div className="portrait-circle">
+            <div className="portrait-circle portrait-circle--sobre">
               <img
                 src={nataliaPortrait}
-                alt="Reino de Mulambo durante um jogo de búzios"
-                width={960}
-                height={960}
-                onError={(e) => {
-                  e.currentTarget.src = "/natalia-retrato.jpg";
-                }}
+                alt="Reino de Mulambo — tarô, búzios e orientação espiritual"
+                width={1254}
+                height={1254}
               />
             </div>
             <div>
@@ -85,7 +82,7 @@ export function Home() {
             <SectionTitle
               eyebrow="valores e serviços"
               title={<>Escolha o encontro que o seu momento pede</>}
-              lede="Cada leitura tem tempo, formato e valor claros. Você agenda e paga no Calendly, via Stripe."
+              lede="Cada leitura tem tempo, formato e valor claros. Você paga primeiro e depois escolhe o horário."
             />
             <div className="mt-10">
               <PriceTable />
@@ -108,7 +105,7 @@ export function Home() {
             <div className="mt-10 grid gap-6 md:grid-cols-3">
               {[
                 ["01", "Você escolhe o encontro", "Na tabela de valores, com formato e preço já claros."],
-                ["02", "Agenda e paga no Calendly", "O Stripe cobra na confirmação do horário. Pix ou cartão. Sem reembolso."],
+                ["02", "Paga e depois agenda", "No Mercado Pago, com Pix ou cartão. O pagamento libera o horário. Sem reembolso."],
                 ["03", "Conversamos no dia marcado", "Texto, áudio ou vídeo, com sigilo e tempo de escuta."],
               ].map(([n, t, d]) => (
                 <Card key={n}>
@@ -185,7 +182,7 @@ export function Home() {
         <div className="container-wide flex flex-col items-start justify-between gap-8 md:flex-row md:items-center">
           <div>
             <h2 className="font-display text-3xl md:text-4xl">Uma mensagem por lua nova.</h2>
-            <p className="mt-2 text-sm text-branco-lua/70">Guarde seu e-mail neste navegador — depois ligamos a um serviço real.</p>
+            <p className="mt-2 text-sm text-branco-lua/70">Uma mensagem espiritual a cada lua nova. A inscrição só é concluída depois da confirmação por e-mail.</p>
           </div>
           <NewsletterForm />
         </div>
@@ -193,7 +190,7 @@ export function Home() {
 
       <section className="py-20 text-center">
         <div className="container-wide">
-          <h2 className="font-display text-4xl">Quando você estiver pronta, estou aqui.</h2>
+          <h2 className="font-display text-4xl">Quando você estiver pronto ou pronta, estou aqui.</h2>
           <div className="mt-8 flex justify-center gap-4">
             <Button href={linkWhatsApp("home")} external>
               Falar com o Reino de Mulambo

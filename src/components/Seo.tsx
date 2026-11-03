@@ -1,4 +1,5 @@
 import { config } from "@/data/config.js";
+import { offerCatalogJsonLd } from "@/lib/offers-schema";
 
 /**
  * Injeta o JSON-LD estruturado da página.
@@ -25,22 +26,19 @@ export function Seo({
         name: config.nome,
         email: config.email,
         telephone: `+${config.whatsapp}`,
-        sameAs: [config.instagram],
+        sameAs: [
+          config.instagram,
+          config.facebookPage,
+          config.facebookProfile,
+          config.tiktok,
+        ],
       },
       areaServed: { "@type": "Country", name: "Brasil" },
       availableChannel: {
         "@type": "ServiceChannel",
         availableLanguage: "Portuguese",
       },
-      hasOfferCatalog: {
-        "@type": "OfferCatalog",
-        name: "Formatos de atendimento",
-        itemListElement: [
-          { "@type": "Offer", itemOffered: { "@type": "Service", name: "Consulta por texto" } },
-          { "@type": "Offer", itemOffered: { "@type": "Service", name: "Consulta por áudio" } },
-          { "@type": "Offer", itemOffered: { "@type": "Service", name: "Consulta por vídeo" } },
-        ],
-      },
+      hasOfferCatalog: offerCatalogJsonLd(),
     };
   return (
     <script

@@ -2,7 +2,7 @@ export const faq = [
   {
     pergunta: "Como funciona o agendamento?",
     resposta:
-      "Você escolhe o serviço e confirma o horário no Calendly. O Stripe cobra na hora da confirmação (Pix ou cartão). Os juros do cartão ficam por sua conta. O pagamento não é reembolsável.",
+      "Você escolhe o serviço, paga no Mercado Pago (Pix ou cartão) e só então escolhe o horário. Os juros do cartão ficam por sua conta. O pagamento não é reembolsável.",
   },
   {
     pergunta: "Posso pedir reembolso?",
@@ -12,7 +12,17 @@ export const faq = [
   {
     pergunta: "O atendimento é online?",
     resposta:
-      "Sim. As consultas são 100% online, para todo o Brasil, nos formatos texto, áudio ou vídeo. Combinamos o formato na conversa.",
+      "Sim. As consultas de tarô e o jogo de búzios são 100% online, para todo o Brasil, nos formatos texto, áudio, ligação ou vídeo. Também atendemos pelo WhatsApp depois do pagamento.",
+  },
+  {
+    pergunta: "Como funciona o jogo de búzios?",
+    resposta:
+      "O jogo de búzios é um oráculo de matriz africana. As conchas revelam Odus — caminhos e o que pede cuidado agora. A consulta é com a Mãe Natália, online, com tempo de escuta. Não é um aplicativo automático.",
+  },
+  {
+    pergunta: "A consulta de tarô online é de verdade?",
+    resposta:
+      "Sim. É uma leitura feita por uma pessoa, com as cartas, no horário que você agenda. Não é tarot grátis de site nem resposta de inteligência artificial. O encontro pode ser por texto, áudio, ligação ou vídeo.",
   },
   {
     pergunta: "Preciso ter uma pergunta pronta?",
@@ -27,7 +37,7 @@ export const faq = [
   {
     pergunta: "Vocês divulgam valores no site?",
     resposta:
-      "Os valores das leituras estão na página de Serviços. Você agenda e paga no Calendly, via Stripe. Trabalhos espirituais, quando realizados, só são tratados após avaliação.",
+      "Os valores das leituras estão na página de Serviços. Você paga primeiro e depois escolhe o horário. Trabalhos espirituais, quando realizados, só são tratados após avaliação.",
   },
   {
     pergunta: "A consulta prevê trabalhos ou obrigações?",
